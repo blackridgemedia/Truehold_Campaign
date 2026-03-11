@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Truehold Retaining — Instagram Campaign</title>
+<style>
+@font-face {
+  font-family: 'MADE Outer Sans';
+  src: url('MADE_Outer_Sans_Reg.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'MADE Outer Sans';
+  src: url('MADE_Outer_Sans_Med.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'MADE Outer Sans';
+  src: url('MADE_Outer_Sans_Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'MADE Outer Sans';
+  src: url('MADE_Outer_Sans_Black.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --charcoal: #141414;
+  --charcoal-2: #1c1c1c;
+  --charcoal-3: #232323;
+  --charcoal-4: #2c2c2c;
+  --charcoal-5: #383838;
+  --ivory: #F9F0E0;
+  --ivory-80: rgba(249,240,224,0.8);
+  --ivory-40: rgba(249,240,224,0.4);
+  --ivory-20: rgba(249,240,224,0.2);
+  --ivory-10: rgba(249,240,224,0.1);
+  --ivory-05: rgba(249,240,224,0.05);
+  --ivory-02: rgba(249,240,224,0.02);
+  --display: 'MADE Outer Sans', sans-serif;
+  --mono: 'MADE Outer Sans', monospace;
+  --sans: 'MADE Outer Sans', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--charcoal);
+  color: var(--ivory);
+  font-family: var(--sans);
+  font-weight: 300;
+  line-height: 1.6;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── LAYOUT ─── */
+.page { max-width: 680px; margin: 0 auto; padding-bottom: 100px; }
+
+/* ─── HEADER ─── */
+.header {
+  padding: 40px 32px 32px;
+  border-bottom: 1px solid var(--ivory-10);
+}
+.meta-row {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 24px;
+}
+.br-mark {
+  font-family: var(--mono);
+  font-size: 9px; font-weight: 500;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: var(--ivory);
+  border: 1px solid var(--ivory-20);
+  padding: 4px 10px; border-radius: 2px;
+}
+.for-mark {
+  font-family: var(--mono);
+  font-size: 9px; color: var(--charcoal-5);
+  letter-spacing: 1px;
+}
+.client-mark {
+  font-family: var(--mono);
+  font-size: 9px; font-weight: 400;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: var(--ivory-40);
+}
+.header-title {
+  font-family: var(--display);
+  font-size: 32px; font-weight: 400;
+  line-height: 1.15; letter-spacing: -0.3px;
+  margin-bottom: 6px;
+}
+.header-title em { font-style: italic; }
+.header-sub {
+  font-family: var(--mono);
+  font-size: 11px; color: var(--ivory-40);
+  letter-spacing: 1px; text-transform: uppercase;
+}
+.kpis {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1px; margin-top: 28px;
+  border: 1px solid var(--ivory-10); border-radius: 4px; overflow: hidden;
+}
+.kpi {
+  background: var(--charcoal-2);
+  padding: 14px 16px;
+}
+.kpi-val {
+  font-family: var(--display); font-size: 20px; font-weight: 400;
+  color: var(--ivory);
+}
+.kpi-label {
+  font-family: var(--mono); font-size: 9px;
+  color: var(--ivory-40); letter-spacing: 1px;
+  text-transform: uppercase; margin-top: 3px;
+}
+
+/* ─── SECTION HEADINGS ─── */
+.sec {
+  padding: 0 32px;
+  margin-top: 32px;
+}
+.sec-label {
+  font-family: var(--mono);
+  font-size: 9px; font-weight: 400;
+  color: var(--ivory-20); letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  display: flex; align-items: center; gap: 10px;
+}
+.sec-label::after {
+  content: '';
+  flex: 1; height: 1px;
+  background: var(--ivory-10);
+}
+
+/* ─── STRATEGY ─── */
+.strategy-list { display: flex; flex-direction: column; gap: 1px; }
+.strategy-item {
+  background: var(--charcoal-2);
+  padding: 14px 18px;
+  display: flex; gap: 14px; align-items: flex-start;
+}
+.strategy-item:first-child { border-radius: 4px 4px 0 0; }
+.strategy-item:last-child { border-radius: 0 0 4px 4px; }
+.s-num {
+  font-family: var(--mono); font-size: 9px;
+  color: var(--ivory-20); flex-shrink: 0;
+  padding-top: 3px; letter-spacing: 1px;
+}
+.s-text { font-size: 12.5px; color: var(--ivory-40); line-height: 1.65; }
+.s-text strong { color: var(--ivory-80); font-weight: 500; }
+
+/* ─── BUDGET BARS ─── */
+.budget-split {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1px; border: 1px solid var(--ivory-10);
+  border-radius: 4px; overflow: hidden;
+}
+.budget-half { background: var(--charcoal-2); padding: 18px 20px; }
+.bh-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 3px; }
+.bh-label {
+  font-family: var(--mono); font-size: 9px;
+  color: var(--ivory-20); text-transform: uppercase; letter-spacing: 1.5px;
+}
+.bh-amount {
+  font-family: var(--display); font-size: 26px; font-weight: 400;
+  color: var(--ivory);
+}
+.bh-note { font-size: 11px; color: var(--ivory-20); margin-bottom: 12px; line-height: 1.5; }
+.bar-bg { height: 2px; background: var(--charcoal-5); border-radius: 1px; overflow: hidden; }
+.bar-fill { height: 100%; background: var(--ivory-40); border-radius: 1px; transition: width 0.8s ease; }
+
+/* ─── WEEK TABS ─── */
+.tab-row {
+  padding: 0 32px;
+  margin-top: 32px;
+  display: flex; align-items: center; gap: 6px;
+}
+.w-tab {
+  font-family: var(--mono); font-size: 10px; font-weight: 400;
+  letter-spacing: 2px; text-transform: uppercase;
+  padding: 8px 20px; border-radius: 2px; cursor: pointer;
+  border: 1px solid var(--ivory-10);
+  background: transparent; color: var(--ivory-20);
+  font-family: var(--mono); transition: all 0.15s;
+}
+.w-tab.on {
+  background: var(--ivory);
+  color: var(--charcoal);
+  border-color: var(--ivory);
+}
+.tab-gap { flex: 1; }
+.v-tab {
+  font-family: var(--mono); font-size: 9px;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 8px 14px; border-radius: 2px; cursor: pointer;
+  border: 1px solid transparent;
+  background: transparent; color: var(--ivory-20);
+  transition: all 0.15s;
+}
+.v-tab.on {
+  border-color: var(--ivory-10);
+  color: var(--ivory-40);
+  background: var(--charcoal-2);
+}
+
+/* ─── WEEK PANELS ─── */
+.wk-panel { display: none; }
+.wk-panel.on { display: block; }
+.view-panel { display: none; }
+.view-panel.on { display: block; }
+
+.week-intro {
+  margin: 16px 32px 0;
+  padding: 16px 20px;
+  background: var(--charcoal-2);
+  border: 1px solid var(--ivory-10);
+  border-radius: 4px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.wi-left {}
+.wi-week {
+  font-family: var(--mono); font-size: 9px;
+  color: var(--ivory-20); letter-spacing: 2px;
+  text-transform: uppercase; margin-bottom: 4px;
+}
+.wi-theme {
+  font-family: var(--display); font-size: 16px; font-weight: 400;
+  color: var(--ivory);
+}
+.wi-right { text-align: right; }
+.wi-spend-label {
+  font-family: var(--mono); font-size: 9px;
+  color: var(--ivory-20); letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.wi-amount {
+  font-family: var(--display); font-size: 26px; font-weight: 400;
+  color: var(--ivory);
+}
+
+/* ─── POST CARDS ─── */
+.posts { padding: 0 32px; margin-top: 12px; }
+
+.pcard {
+  border: 1px solid var(--ivory-10);
+  border-radius: 4px;
+  margin-bottom: 6px;
+  overflow: hidden;
+  transition: border-color 0.2s;
+  background: var(--charcoal-2);
+}
+.pcard.expanded { border-color: var(--ivory-20); }
+
+.p-trigger {
+  width: 100%; background: none; border: none;
+  cursor: pointer; padding: 16px 18px;
+  display: flex; align-items: center; gap: 14px;
+  font-family: var(--sans); text-align: left;
+}
+.p-trigger:hover .p-day { color: var(--ivory); }
+
+.p-index {
+  font-family: var(--mono); font-size: 10px; font-weight: 400;
+  color: var(--ivory-20); flex-shrink: 0;
+  width: 22px;
+}
+.p-info { flex: 1; min-width: 0; }
+.p-row1 { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 3px; }
+.p-day {
+  font-family: var(--sans); font-size: 13px; font-weight: 500;
+  color: var(--ivory-80); transition: color 0.15s;
+}
+.p-tags { display: flex; gap: 5px; flex-wrap: wrap; align-items: center; }
+.ptag {
+  font-family: var(--mono); font-size: 8px; font-weight: 400;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 2px 7px; border-radius: 2px;
+  border: 1px solid var(--ivory-10);
+  color: var(--ivory-40);
+}
+.ptag.paid {
+  border-color: var(--ivory-20);
+  color: var(--ivory-80);
+  background: var(--ivory-05);
+}
+.p-format {
+  font-family: var(--mono); font-size: 10px;
+  color: var(--ivory-20); letter-spacing: 0.5px;
+}
+.p-spend {
+  font-family: var(--display); font-size: 16px; font-weight: 400;
+  color: var(--ivory-40); flex-shrink: 0;
+}
+.p-spend.paid-spend { color: var(--ivory); }
+.p-chev {
+  color: var(--ivory-20); font-size: 11px; flex-shrink: 0;
+  transition: transform 0.2s;
+}
+.p-chev.open { transform: rotate(180deg); }
+
+/* ─── POST BODY ─── */
+.p-body {
+  display: none;
+  border-top: 1px solid var(--ivory-10);
+  padding: 20px 18px;
+}
+.p-body.open { display: block; }
+
+.field { margin-bottom: 18px; }
+.field:last-child { margin-bottom: 0; }
+.field-label {
+  font-family: var(--mono); font-size: 9px; font-weight: 400;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: var(--ivory-20); margin-bottom: 8px;
+}
+.field-text {
+  font-size: 12.5px; color: var(--ivory-40); line-height: 1.65;
+}
+.field-text strong { color: var(--ivory-80); font-weight: 500; }
+
+.ad-block {
+  background: var(--charcoal-3);
+  border: 1px solid var(--ivory-10);
+  border-radius: 3px; padding: 14px 16px;
+}
+.ad-row { display: flex; gap: 12px; margin-bottom: 8px; }
+.ad-row:last-child { margin-bottom: 0; }
+.ad-k {
+  font-family: var(--mono); font-size: 9px;
+  color: var(--ivory-20); text-transform: uppercase;
+  letter-spacing: 1px; width: 48px; flex-shrink: 0;
+  padding-top: 2px;
+}
+.ad-v { font-size: 12px; color: var(--ivory-40); line-height: 1.6; }
+.ad-v.highlight { color: var(--ivory-80); font-weight: 500; }
+.ad-v.note { color: var(--ivory-40); font-style: italic; }
+
+.organic-pill {
+  background: var(--charcoal-3);
+  border: 1px solid var(--ivory-10);
+  border-radius: 3px; padding: 12px 16px;
+}
+.organic-pill .field-text { color: var(--ivory-20); font-style: italic; }
+
+.caption-block {
+  background: var(--charcoal);
+  border: 1px solid var(--ivory-10);
+  border-radius: 3px; padding: 16px;
+  font-family: var(--mono); font-size: 11px;
+  color: var(--ivory-40); line-height: 1.9;
+  white-space: pre-wrap; letter-spacing: 0.1px;
+}
+
+.cta-pair { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+.cta-pill {
+  flex: 1 1 160px;
+  border-radius: 3px; padding: 9px 14px;
+  font-family: var(--mono); font-size: 10px; font-weight: 400;
+  letter-spacing: 0.5px; line-height: 1.4;
+}
+.cta-pill.action {
+  background: var(--ivory-05);
+  border: 1px solid var(--ivory-20);
+  color: var(--ivory-80);
+}
+.cta-pill.goal {
+  background: transparent;
+  border: 1px solid var(--ivory-10);
+  color: var(--ivory-20);
+}
+
+.divider { height: 1px; background: var(--ivory-10); margin: 18px 0; }
+
+/* ─── BUDGET VIEW ─── */
+.bv-list { padding: 0 32px; margin-top: 12px; }
+.bv-item {
+  display: flex; align-items: flex-start; gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--ivory-10);
+}
+.bv-item:last-of-type { border-bottom: none; }
+.bv-left { flex: 1; }
+.bv-header { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; flex-wrap: wrap; }
+.bv-num {
+  font-family: var(--mono); font-size: 9px;
+  color: var(--ivory-20); letter-spacing: 1px;
+}
+.bv-day {
+  font-family: var(--sans); font-size: 12px; font-weight: 500;
+  color: var(--ivory-80);
+}
+.bv-target {
+  font-family: var(--mono); font-size: 10px;
+  color: var(--ivory-20); margin-bottom: 5px;
+}
+.bv-note { font-size: 12px; color: var(--ivory-40); line-height: 1.55; font-style: italic; }
+.bv-amount {
+  font-family: var(--display); font-size: 24px; font-weight: 400;
+  color: var(--ivory); flex-shrink: 0; min-width: 60px; text-align: right;
+}
+.bv-amount.organic { color: var(--ivory-20); font-size: 16px; padding-top: 4px; }
+.bv-subtotal {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 14px 0 0;
+  border-top: 1px solid var(--ivory-10);
+  margin-top: 8px;
+}
+.bv-st-label {
+  font-family: var(--mono); font-size: 9px;
+  text-transform: uppercase; letter-spacing: 2px;
+  color: var(--ivory-20);
+}
+.bv-st-amount {
+  font-family: var(--display); font-size: 28px; font-weight: 400;
+  color: var(--ivory);
+}
+
+/* ─── FULL BUDGET TABLE ─── */
+.budget-table {
+  border: 1px solid var(--ivory-10); border-radius: 4px; overflow: hidden;
+}
+.bt-row {
+  display: flex; align-items: center; gap: 14px;
+  padding: 12px 18px;
+  border-bottom: 1px solid var(--ivory-10);
+  transition: background 0.1s;
+}
+.bt-row.organic { opacity: 0.4; }
+.bt-row:last-of-type { border-bottom: none; }
+.bt-bar {
+  width: 2px; height: 28px; border-radius: 1px;
+  flex-shrink: 0;
+}
+.bt-bar.paid { background: var(--ivory); }
+.bt-bar.organic { background: var(--charcoal-5); }
+.bt-info { flex: 1; }
+.bt-title { font-size: 12px; font-weight: 500; color: var(--ivory-80); }
+.bt-detail {
+  font-family: var(--mono); font-size: 10px;
+  color: var(--ivory-20); margin-top: 1px;
+}
+.bt-amount {
+  font-family: var(--display); font-size: 16px; font-weight: 400;
+  color: var(--ivory);
+}
+.bt-amount.organic-amt { color: var(--ivory-20); font-size: 13px; font-family: var(--mono); }
+.bt-total {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 16px 18px;
+  background: var(--charcoal-3);
+  border-top: 1px solid var(--ivory-20);
+}
+.bt-total-label {
+  font-family: var(--mono); font-size: 9px;
+  text-transform: uppercase; letter-spacing: 2px;
+  color: var(--ivory-40);
+}
+.bt-total-sub {
+  font-family: var(--mono); font-size: 9px;
+  color: var(--ivory-20); margin-top: 3px; letter-spacing: 0.5px;
+}
+.bt-total-amount {
+  font-family: var(--display); font-size: 32px; font-weight: 400;
+  color: var(--ivory);
+}
+
+/* ─── MEDIA MAP ─── */
+.media-row {
+  display: flex; gap: 0;
+  border: 1px solid var(--ivory-10); border-radius: 4px; overflow: hidden;
+}
+.media-col {
+  flex: 1; padding: 16px 18px;
+  border-right: 1px solid var(--ivory-10);
+}
+.media-col:last-child { border-right: none; }
+.mc-type {
+  font-family: var(--mono); font-size: 9px; font-weight: 400;
+  text-transform: uppercase; letter-spacing: 1.5px;
+  color: var(--ivory-40); margin-bottom: 8px;
+}
+.mc-posts {
+  font-family: var(--mono); font-size: 9px;
+  color: var(--ivory-20); margin-bottom: 8px;
+  letter-spacing: 0.5px;
+}
+.mc-desc { font-size: 11px; color: var(--ivory-20); line-height: 1.6; }
+
+/* ─── TIPS ─── */
+.tips-list { display: flex; flex-direction: column; gap: 1px; }
+.tip-item {
+  background: var(--charcoal-2);
+  padding: 13px 18px;
+  display: flex; gap: 14px;
+  font-size: 12px; color: var(--ivory-40); line-height: 1.65;
+}
+.tip-item:first-child { border-radius: 4px 4px 0 0; }
+.tip-item:last-child { border-radius: 0 0 4px 4px; }
+.tip-mark {
+  font-family: var(--mono); font-size: 9px;
+  color: var(--ivory-20); flex-shrink: 0;
+  padding-top: 3px; letter-spacing: 1px;
+}
+
+/* ─── FOOTER ─── */
+.footer {
+  margin: 40px 32px 0;
+  padding-top: 20px;
+  border-top: 1px solid var(--ivory-10);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.footer-br {
+  font-family: var(--mono); font-size: 9px;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: var(--ivory-20);
+}
+.footer-date {
+  font-family: var(--mono); font-size: 9px;
+  color: var(--ivory-10); letter-spacing: 1px;
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ─── HEADER ─── -->
+  <div class="header">
+    <div class="meta-row">
+      <span class="br-mark">Blackridge</span>
+      <span class="for-mark">→</span>
+      <span class="client-mark">Truehold Retaining</span>
+    </div>
+    <h1 class="header-title">2-Week <em>Instagram</em><br>Campaign Plan</h1>
+    <p class="header-sub">Retaining Walls · Construction &amp; Team Photography &amp; Videography</p>
+    <div class="kpis">
+      <div class="kpi">
+        <div class="kpi-val">2</div>
+        <div class="kpi-label">Weeks</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-val">6</div>
+        <div class="kpi-label">Posts</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-val">$1k</div>
+        <div class="kpi-label">Budget</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-val">3/3</div>
+        <div class="kpi-label">Paid / Organic</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── STRATEGY ─── -->
+  <div class="sec">
+    <div class="sec-label">Strategy</div>
+    <div class="strategy-list">
+      <div class="strategy-item">
+        <span class="s-num">01</span>
+        <span class="s-text"><strong>Week 1 builds the audience.</strong> $350 spend on cold homeowners seeds the retargeting pool Week 2 depends on entirely. Construction and candid photos do the work — real images build trust faster than polished ads in trades.</span>
+      </div>
+      <div class="strategy-item">
+        <span class="s-num">02</span>
+        <span class="s-text"><strong>Week 2 converts.</strong> $650 concentrated on a warm audience. Organic team and candid posts mid-week keep the brand human between the two paid conversion posts.</span>
+      </div>
+      <div class="strategy-item">
+        <span class="s-num">03</span>
+        <span class="s-text"><strong>Don't over-edit the photos.</strong> Authenticity is the point. Construction-only assets are a genuine strength for trades — they show the work is real, the team knows what they're doing, and the craft is there.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── BUDGET ─── -->
+  <div class="sec">
+    <div class="sec-label">Budget Allocation</div>
+    <div class="budget-split">
+      <div class="budget-half">
+        <div class="bh-row">
+          <span class="bh-label">Week 1</span>
+          <span class="bh-amount">$350</span>
+        </div>
+        <div class="bh-note">Awareness — reach cold audience, build retargeting pool</div>
+        <div class="bar-bg"><div class="bar-fill" style="width:35%"></div></div>
+      </div>
+      <div class="budget-half">
+        <div class="bh-row">
+          <span class="bh-label">Week 2</span>
+          <span class="bh-amount">$650</span>
+        </div>
+        <div class="bh-note">Conversion — warm audience, lead gen, final sweep</div>
+        <div class="bar-bg"><div class="bar-fill" style="width:65%"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── TABS ─── -->
+  <div class="tab-row">
+    <button class="w-tab on" id="wt0" onclick="switchWeek(0)">Week 1</button>
+    <button class="w-tab" id="wt1" onclick="switchWeek(1)">Week 2</button>
+    <div class="tab-gap"></div>
+    <button class="v-tab on" id="vtp" onclick="switchView('posts')">Posts</button>
+    <button class="v-tab" id="vtb" onclick="switchView('budget')">Budget</button>
+  </div>
+
+  <!-- ════════════════════ WEEK 1 ════════════════════ -->
+  <div class="wk-panel on" id="wk0">
+
+    <div class="week-intro">
+      <div class="wi-left">
+        <div class="wi-week">Week 1 — Mon / Wed / Fri</div>
+        <div class="wi-theme">Awareness — Show the Work, Build the Audience</div>
+      </div>
+      <div class="wi-right">
+        <div class="wi-spend-label">Spend</div>
+        <div class="wi-amount">$350</div>
+      </div>
+    </div>
+
+    <!-- W1 POSTS -->
+    <div class="view-panel on" id="vw0p">
+      <div class="posts">
+
+        <!-- POST 01 -->
+        <div class="pcard" id="c1">
+          <button class="p-trigger" onclick="toggle('c1')">
+            <span class="p-index">01</span>
+            <div class="p-info">
+              <div class="p-row1">
+                <span class="p-day">Monday</span>
+                <div class="p-tags">
+                  <span class="ptag paid">Paid</span>
+                  <span class="ptag">Reel</span>
+                  <span class="ptag">Project Proof</span>
+                </div>
+              </div>
+              <div class="p-format">🎬 Video — Project Reel</div>
+            </div>
+            <span class="p-spend paid-spend">$200</span>
+            <span class="p-chev">▾</span>
+          </button>
+          <div class="p-body" id="c1b">
+            <div class="field">
+              <div class="field-label">Video Assignment</div>
+              <div class="field-text">Use the project reel as-is. Add a text overlay at the start: <strong>"Truehold Retaining — Built to Last."</strong> Turn subtitles on for silent viewers. The reel shows the construction process and scale — let it do the work.</div>
+            </div>
+            <div class="divider"></div>
+            <div class="field">
+              <div class="field-label">Ad Spend — $200</div>
+              <div class="ad-block">
+                <div class="ad-row">
+                  <span class="ad-k">Type</span>
+                  <span class="ad-v highlight">Instagram Reel Ad — Broad Reach</span>
+                </div>
+                <div class="ad-row">
+                  <span class="ad-k">Target</span>
+                  <span class="ad-v">Homeowners 30–65, property &amp; renovation interests, Hawkesbury &amp; Northwest Sydney 50km</span>
+                </div>
+                <div class="ad-row">
+                  <span class="ad-k">Why</span>
+                  <span class="ad-v note">Reels have the lowest CPM on Meta right now — $200 here reaches 15–30k local people. More importantly, it seeds the largest possible retargeting audience for Week 2. Everyone who watches 50%+ of the Reel becomes retargetable. Don't reduce this spend.</span>
+                </div>
+              </div>
+            </div>
+            <div class="divider"></div>
+            <div class="field">
+              <div class="field-label">Caption</div>
+              <div class="caption-block">This is what proper looks like. 🪨
+
+Natural retaining wall — designed and installed by Truehold Retaining.
+
+This slope had an ongoing erosion problem. Now it's a retaining wall built to hold for decades.
+
+This is what we do. And we do it properly.
+
+📍 Hawkesbury &amp; Northwest Sydney
+📩 DM us or link in bio for a free quote.
+
+#TrueholdRetaining #RetainingWalls #RetainingWalls #RetainingWallExperts #Hawkesbury #LandscapeEngineering</div>
+            </div>
+            <div class="cta-pair">
+              <div class="cta-pill action">→ DM or Free Quote — Link in Bio</div>
+              <div class="cta-pill goal">🎯 Maximum reach + seed retargeting audience for Weeks 1–2</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- POST 02 -->
+        <div class="pcard" id="c2">
+          <button class="p-trigger" onclick="toggle('c2')">
+            <span class="p-index">02</span>
+            <div class="p-info">
+              <div class="p-row1">
+                <span class="p-day">Wednesday</span>
+                <div class="p-tags">
+                  <span class="ptag">Organic</span>
+                  <span class="ptag">Construction</span>
+                </div>
+              </div>
+              <div class="p-format">📸 Photo — Construction wide shot</div>
+            </div>
+            <span class="p-spend">Organic</span>
+            <span class="p-chev">▾</span>
+          </button>
+          <div class="p-body" id="c2b">
+            <div class="field">
+              <div class="field-label">Photo Assignment</div>
+              <div class="field-text">Your widest, most dramatic construction shot — the wall visibly taking shape across the slope. Scale matters here. <strong>Use your best available construction stills.</strong> This reinforces the Reel to anyone who watched it Monday.</div>
+            </div>
+            <div class="divider"></div>
+            <div class="field">
+              <div class="field-label">Note</div>
+              <div class="organic-pill">
+                <div class="field-text">No paid spend. People who watched Monday's Reel now see a still of the same project — reinforces the work and keeps the profile active mid-week before Friday's carousel.</div>
+              </div>
+            </div>
+            <div class="divider"></div>
+            <div class="field">
+              <div class="field-label">Caption</div>
+              <div class="caption-block">Built to last. 🏗️
+
+Every retaining wall we install is engineered specifically for the site — the soil conditions, drainage, slope, and load requirements.
+
+No cookie-cutter solutions. Just proper, considered work.
+
+📐 Precision engineered
+🪨 Natural retaining wall
+📍 Hawkesbury &amp; Northwest Sydney
+
+🔗 Free consultation — link in bio.
+
+#TrueholdRetaining #RetainingWalls #RetainingWallExperts #RetainingWalls #Hawkesbury #LandscapeEngineering </div>
+            </div>
+            <div class="cta-pair">
+              <div class="cta-pill action">→ Free Consultation — Link in Bio</div>
+              <div class="cta-pill goal">🎯 Organic — reinforces the Reel, keeps profile active</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- POST 03 -->
+        <div class="pcard" id="c3">
+          <button class="p-trigger" onclick="toggle('c3')">
+            <span class="p-index">03</span>
+            <div class="p-info">
+              <div class="p-row1">
+                <span class="p-day">Friday</span>
+                <div class="p-tags">
+                  <span class="ptag paid">Paid</span>
+                  <span class="ptag">Candid</span>
+                  <span class="ptag">Carousel</span>
+                </div>
+              </div>
+              <div class="p-format">📸 Carousel — Candid cover + construction (3–4 slides)</div>
+            </div>
+            <span class="p-spend paid-spend">$150</span>
+            <span class="p-chev">▾</span>
+          </button>
+          <div class="p-body" id="c3b">
+            <div class="field">
+              <div class="field-label">Photo Assignment</div>
+              <div class="field-text"><strong>Slide 1:</strong> Best candid — worker focused, hands on stone, natural unposed moment (carousel cover). <strong>Slides 2–3:</strong> Mid-construction progress showing the wall building up. <strong>Slide 4 (optional):</strong> Close-up retaining wall texture or block detail. Mix of real people and real work.</div>
+            </div>
+            <div class="divider"></div>
+            <div class="field">
+              <div class="field-label">Ad Spend — $150</div>
+              <div class="ad-block">
+                <div class="ad-row">
+                  <span class="ad-k">Type</span>
+                  <span class="ad-v highlight">Boosted Carousel — Retarget Monday Viewers</span>
+                </div>
+                <div class="ad-row">
+                  <span class="ad-k">Target</span>
+                  <span class="ad-v">Monday post engagers + broad homeowner audience, Hawkesbury 50km</span>
+                </div>
+                <div class="ad-row">
+                  <span class="ad-k">Why</span>
+                  <span class="ad-v note">Carousels have the highest save rate on Instagram. Candid cover stops the scroll. Construction slides show the craft. High saves extend organic reach beyond the paid audience going into the weekend.</span>
+                </div>
+              </div>
+            </div>
+            <div class="divider"></div>
+            <div class="field">
+              <div class="field-label">Caption</div>
+              <div class="caption-block">Swipe to see how a retaining wall actually gets built. 🪨
+
+It's not glamorous. It's physical, precise work — and every stone matters.
+
+Our team at Truehold takes the same care on every job, whether it's a small garden wall or a full slope stabilisation like this one at .
+
+Natural retaining wall. Done right. Built to last decades.
+
+Save this 🔖 if you've been thinking about a retaining wall.
+
+📩 DM us or hit the link in bio for a free quote.
+
+#TrueholdRetaining #Retaining WallConstruction #TradeLife #RetainingWalls #RetainingWallExperts #Hawkesbury #RetainingWalls</div>
+            </div>
+            <div class="cta-pair">
+              <div class="cta-pill action">→ Free Quote — DM or Link in Bio</div>
+              <div class="cta-pill goal">🎯 High saves + retargets Mon viewers — primes for Week 2</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- W1 BUDGET -->
+    <div class="view-panel" id="vw0b">
+      <div class="bv-list">
+        <div class="bv-item">
+          <div class="bv-left">
+            <div class="bv-header">
+              <span class="bv-num">01</span>
+              <span class="bv-day">Monday</span>
+              <span class="ptag paid">Reel Ad</span>
+            </div>
+            <div class="bv-target">Homeowners 30–65 · property &amp; reno interests · 50km</div>
+            <div class="bv-note">Lowest CPM on Meta. Reaches 15–30k locals and seeds the largest possible retargeting audience. Everyone who watches 50%+ becomes retargetable for Week 2.</div>
+          </div>
+          <div class="bv-amount">$200</div>
+        </div>
+        <div class="bv-item">
+          <div class="bv-left">
+            <div class="bv-header">
+              <span class="bv-num">02</span>
+              <span class="bv-day">Wednesday</span>
+              <span class="ptag">Organic</span>
+            </div>
+            <div class="bv-note">No paid spend. Construction still reinforces the Reel to anyone who saw it Monday.</div>
+          </div>
+          <div class="bv-amount organic">—</div>
+        </div>
+        <div class="bv-item">
+          <div class="bv-left">
+            <div class="bv-header">
+              <span class="bv-num">03</span>
+              <span class="bv-day">Friday</span>
+              <span class="ptag paid">Boosted Carousel</span>
+            </div>
+            <div class="bv-target">Monday engagers + broad homeowner audience · 50km</div>
+            <div class="bv-note">Candid cover + construction slides. High save rate. Primes audience emotionally for Week 2 conversion.</div>
+          </div>
+          <div class="bv-amount">$150</div>
+        </div>
+        <div class="bv-subtotal">
+          <span class="bv-st-label">Week 1 Total</span>
+          <span class="bv-st-amount">$350</span>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end wk0 -->
+
+  <!-- ════════════════════ WEEK 2 ════════════════════ -->
+  <div class="wk-panel" id="wk1">
+
+    <div class="week-intro">
+      <div class="wi-left">
+        <div class="wi-week">Week 2 — Mon / Wed / Fri</div>
+        <div class="wi-theme">Conversion — Turn Warm Audience into Leads</div>
+      </div>
+      <div class="wi-right">
+        <div class="wi-spend-label">Spend</div>
+        <div class="wi-amount">$650</div>
+      </div>
+    </div>
+
+    <!-- W2 POSTS -->
+    <div class="view-panel on" id="vw1p">
+      <div class="posts">
+
+        <!-- POST 04 -->
+        <div class="pcard" id="c4">
+          <button class="p-trigger" onclick="toggle('c4')">
+            <span class="p-index">04</span>
+            <div class="p-info">
+              <div class="p-row1">
+                <span class="p-day">Monday</span>
+                <div class="p-tags">
+                  <span class="ptag paid">Paid</span>
+                  <span class="ptag">Construction</span>
+                  <span class="ptag">Lead Gen</span>
+                </div>
+              </div>
+              <div class="p-format">📸 Photo — Most impactful construction shot</div>
+            </div>
+            <span class="p-spend paid-spend">$300</span>
+            <span class="p-chev">▾</span>
+          </button>
+          <div class="p-body" id="c4b">
+            <div class="field">
+              <div class="field-label">Photo Assignment</div>
+              <div class="field-text">Not necessarily the widest — choose the one that best shows <strong>precision and craft</strong>. Stones being carefully set, a worker focused on placement, or a section showing the quality up close. The image that says "these people know what they're doing."</div>
+            </div>
+            <div class="divider"></div>
+            <div class="field">
+              <div class="field-label">Ad Spend — $300</div>
+              <div class="ad-block">
+                <div class="ad-row">
+                  <span class="ad-k">Type</span>
+                  <span class="ad-v highlight">Meta Lead Gen Ad — Instant Form</span>
+                </div>
+                <div class="ad-row">
+                  <span class="ad-k">Target</span>
+                  <span class="ad-v">All Week 1 engagers + homeowners 35–65, property/reno interests, 40km radius</span>
+                </div>
+                <div class="ad-row">
+                  <span class="ad-k">Why</span>
+                  <span class="ad-v note">Biggest single spend. $300 over 7 days = $43/day — the algorithm exits Meta's learning phase and optimises for lead submissions. Instant Form collects name + phone + suburb without leaving Instagram. Target $15–25 cost per lead.</span>
+                </div>
+              </div>
+            </div>
+            <div class="divider"></div>
+            <div class="field">
+              <div class="field-label">Caption</div>
+              <div class="caption-block">This is retaining wall work done properly. 🪨
+
+Every wall Truehold builds is engineered for the specific site — the slope, the soil, the drainage, the load. No guesswork. No shortcuts.
+
+Right now we're offering FREE site assessments for Hawkesbury &amp; Northwest Sydney homeowners. We come to you, look at your land, and give you an honest quote.
+
+No obligation. Just real advice from people who know what they're doing.
+
+🗓️ Limited spots — book yours this week.
+📩 DM us or tap the link in bio.
+
+#TrueholdRetaining #RetainingWalls #FreeSiteAssessment #RetainingWallExperts #RetainingWalls #Hawkesbury #NorthwestSydney</div>
+            </div>
+            <div class="cta-pair">
+              <div class="cta-pill action">→ Book Free Site Assessment — Lead Form</div>
+              <div class="cta-pill goal">🎯 Primary lead gen — most important post of the campaign</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- POST 05 -->
+        <div class="pcard" id="c5">
+          <button class="p-trigger" onclick="toggle('c5')">
+            <span class="p-index">05</span>
+            <div class="p-info">
+              <div class="p-row1">
+                <span class="p-day">Wednesday</span>
+                <div class="p-tags">
+                  <span class="ptag">Organic</span>
+                  <span class="ptag">Candid Worker</span>
+                </div>
+              </div>
+              <div class="p-format">📸 Photo — Best candid worker moment</div>
+            </div>
+            <span class="p-spend">Organic</span>
+            <span class="p-chev">▾</span>
+          </button>
+          <div class="p-body" id="c5b">
+            <div class="field">
+              <div class="field-label">Photo Assignment</div>
+              <div class="field-text">Your single best candid — a worker in a <strong>completely natural, unposed moment</strong>. Concentration on a face, hands on stone, a genuine laugh with a colleague. The more real it looks the better. This is the post that makes people feel like they already know the team.</div>
+            </div>
+            <div class="divider"></div>
+            <div class="field">
+              <div class="field-label">Note</div>
+              <div class="organic-pill">
+                <div class="field-text">No paid spend. Keeps the brand human mid-week between the two conversion posts. Fence-sitters from Monday often engage with content like this before deciding to enquire on Friday.</div>
+              </div>
+            </div>
+            <div class="divider"></div>
+            <div class="field">
+              <div class="field-label">Caption</div>
+              <div class="caption-block">The work speaks for itself. But so does the person doing it. 👷
+
+This is what a Truehold job looks like up close — focus, precision, and genuine pride in the craft.
+
+When you hire Truehold, this is who shows up on your property. Local tradies who care about the job they leave behind.
+
+📩 Want a team like this on your project? DM us or link in bio.
+
+#TrueholdRetaining #TradeLife #Retaining Wall #RealWork #Hawkesbury #LocalTrades #RetainingWalls #RetainingWallExperts</div>
+            </div>
+            <div class="cta-pair">
+              <div class="cta-pill action">→ DM or Link in Bio</div>
+              <div class="cta-pill goal">🎯 Keeps brand human — nudges fence-sitters toward Friday</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- POST 06 -->
+        <div class="pcard" id="c6">
+          <button class="p-trigger" onclick="toggle('c6')">
+            <span class="p-index">06</span>
+            <div class="p-info">
+              <div class="p-row1">
+                <span class="p-day">Friday</span>
+                <div class="p-tags">
+                  <span class="ptag paid">Paid</span>
+                  <span class="ptag">Construction</span>
+                  <span class="ptag">The Closer</span>
+                </div>
+              </div>
+              <div class="p-format">📸 Carousel — Project story, early → late stage (3–4 slides)</div>
+            </div>
+            <span class="p-spend paid-spend">$200</span>
+            <span class="p-chev">▾</span>
+          </button>
+          <div class="p-body" id="c6b">
+            <div class="field">
+              <div class="field-label">Photo Assignment</div>
+              <div class="field-text"><strong>Slide 1:</strong> Early groundwork or foundation — the beginning. <strong>Slides 2–3:</strong> Wall building up, blocks being set. <strong>Slide 4:</strong> Most complete/advanced construction shot you have. Optional: slip in a candid mid-carousel if it fits the flow. Should feel like watching the job come together.</div>
+            </div>
+            <div class="divider"></div>
+            <div class="field">
+              <div class="field-label">Ad Spend — $200</div>
+              <div class="ad-block">
+                <div class="ad-row">
+                  <span class="ad-k">Type</span>
+                  <span class="ad-v highlight">Final Retarget — Full Campaign Audience</span>
+                </div>
+                <div class="ad-row">
+                  <span class="ad-k">Target</span>
+                  <span class="ad-v">Everyone who engaged with any post across both weeks but hasn't submitted a lead form yet</span>
+                </div>
+                <div class="ad-row">
+                  <span class="ad-k">Why</span>
+                  <span class="ad-v note">Final sweep. By Friday Week 2 this audience has seen Truehold 3–4 times. Frequency builds trust. A construction progression carousel gives late deciders the social proof they need before committing to an enquiry.</span>
+                </div>
+              </div>
+            </div>
+            <div class="divider"></div>
+            <div class="field">
+              <div class="field-label">Caption</div>
+              <div class="caption-block">The  Project — from the ground up. 🪨 (swipe through)
+
+This is what a Truehold retaining wall looks like as it comes together — groundwork, stone placement, the wall building course by course.
+
+Natural retaining wall isn't just a material choice. It's a commitment to building something that lasts — that looks better over time, not worse.
+
+If your block needs this kind of work, we'd love to talk.
+
+Truehold Retaining. Local. Experienced.
+
+📞 Call us today
+📩 DM us on Instagram
+🔗 Free quote — link in bio
+
+Tag someone whose yard needs this 👇
+
+#TrueholdRetaining #RetainingWalls #RetainingWallExperts #Hawkesbury #NorthwestSydney #RetainingWalls #GetAQuote</div>
+            </div>
+            <div class="cta-pair">
+              <div class="cta-pill action">→ Call / DM / Free Quote — Link in Bio</div>
+              <div class="cta-pill goal">🎯 Final conversion sweep of full warm audience</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- W2 BUDGET -->
+    <div class="view-panel" id="vw1b">
+      <div class="bv-list">
+        <div class="bv-item">
+          <div class="bv-left">
+            <div class="bv-header">
+              <span class="bv-num">04</span>
+              <span class="bv-day">Monday</span>
+              <span class="ptag paid">Lead Gen Ad</span>
+            </div>
+            <div class="bv-target">All Week 1 engagers + homeowners 35–65 · 40km</div>
+            <div class="bv-note">Biggest single spend. $43/day exits Meta's learning phase. Instant Form collects leads without leaving Instagram. Target $15–25 CPL.</div>
+          </div>
+          <div class="bv-amount">$300</div>
+        </div>
+        <div class="bv-item">
+          <div class="bv-left">
+            <div class="bv-header">
+              <span class="bv-num">05</span>
+              <span class="bv-day">Wednesday</span>
+              <span class="ptag">Organic</span>
+            </div>
+            <div class="bv-note">No paid spend. Candid worker photo keeps brand human mid-week.</div>
+          </div>
+          <div class="bv-amount organic">—</div>
+        </div>
+        <div class="bv-item">
+          <div class="bv-left">
+            <div class="bv-header">
+              <span class="bv-num">06</span>
+              <span class="bv-day">Friday</span>
+              <span class="ptag paid">Final Retarget</span>
+            </div>
+            <div class="bv-target">All campaign engagers who haven't converted yet</div>
+            <div class="bv-note">Project story carousel. By now the audience has seen Truehold 3–4 times. Frequency + social proof closes late deciders.</div>
+          </div>
+          <div class="bv-amount">$200</div>
+        </div>
+        <div class="bv-subtotal">
+          <span class="bv-st-label">Week 2 Total</span>
+          <span class="bv-st-amount">$650</span>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end wk1 -->
+
+  <!-- ─── FULL BUDGET TABLE ─── -->
+  <div class="sec">
+    <div class="sec-label">Full Spend Breakdown</div>
+    <div class="budget-table">
+      <div class="bt-row">
+        <div class="bt-bar paid"></div>
+        <div class="bt-info">
+          <div class="bt-title">Post 01 — Week 1 Monday</div>
+          <div class="bt-detail">Reel Ad · Lowest CPM · Maximum reach · Seeds retargeting</div>
+        </div>
+        <div class="bt-amount">$200</div>
+      </div>
+      <div class="bt-row organic">
+        <div class="bt-bar organic"></div>
+        <div class="bt-info">
+          <div class="bt-title">Post 02 — Week 1 Wednesday</div>
+          <div class="bt-detail">Organic · Construction wide shot · Reinforces Reel</div>
+        </div>
+        <div class="bt-amount organic-amt">Organic</div>
+      </div>
+      <div class="bt-row">
+        <div class="bt-bar paid"></div>
+        <div class="bt-info">
+          <div class="bt-title">Post 03 — Week 1 Friday</div>
+          <div class="bt-detail">Boosted Carousel · Candid cover + construction · Retargets Monday</div>
+        </div>
+        <div class="bt-amount">$150</div>
+      </div>
+      <div class="bt-row">
+        <div class="bt-bar paid"></div>
+        <div class="bt-info">
+          <div class="bt-title">Post 04 — Week 2 Monday ★</div>
+          <div class="bt-detail">Lead Gen Ad · Meta Instant Form · Primary conversion</div>
+        </div>
+        <div class="bt-amount">$300</div>
+      </div>
+      <div class="bt-row organic">
+        <div class="bt-bar organic"></div>
+        <div class="bt-info">
+          <div class="bt-title">Post 05 — Week 2 Wednesday</div>
+          <div class="bt-detail">Organic · Candid worker photo</div>
+        </div>
+        <div class="bt-amount organic-amt">Organic</div>
+      </div>
+      <div class="bt-row" style="border-bottom:none;">
+        <div class="bt-bar paid"></div>
+        <div class="bt-info">
+          <div class="bt-title">Post 06 — Week 2 Friday</div>
+          <div class="bt-detail">Final Retarget Carousel · Project story · Full audience closer</div>
+        </div>
+        <div class="bt-amount">$200</div>
+      </div>
+      <div class="bt-total">
+        <div>
+          <div class="bt-total-label">Total Campaign Spend</div>
+          <div class="bt-total-sub">3 paid posts · 3 organic posts · 2 weeks</div>
+        </div>
+        <div class="bt-total-amount">$1,000</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── MEDIA MAP ─── -->
+  <div class="sec">
+    <div class="sec-label">Media Assignment</div>
+    <div class="media-row">
+      <div class="media-col">
+        <div class="mc-type">Construction</div>
+        <div class="mc-posts">Posts 02, 03, 04, 06</div>
+        <div class="mc-desc">Wide construction stills — use your best available shots for each post</div>
+      </div>
+      <div class="media-col">
+        <div class="mc-type">Project Reel</div>
+        <div class="mc-posts">Post 01 (Mon)</div>
+        <div class="mc-desc">Video as-is — add opening text overlay &amp; subtitles. Highest reach format on Meta.</div>
+      </div>
+      <div class="media-col">
+        <div class="mc-type">Candid Workers</div>
+        <div class="mc-posts">Posts 03, 05, 06</div>
+        <div class="mc-desc">Carousel cover (03), hero image (05), optional mid-carousel slide (06)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── TIPS ─── -->
+  <div class="sec">
+    <div class="sec-label">Campaign Notes</div>
+    <div class="tips-list">
+      <div class="tip-item">
+        <span class="tip-mark">—</span>
+        <span>Monitor the Week 2 Monday Lead Gen Ad daily. Pause and reallocate to Friday if cost per lead exceeds $30.</span>
+      </div>
+      <div class="tip-item">
+        <span class="tip-mark">—</span>
+        <span>Don't over-edit candid and team photos. Authenticity is the point — raw, real images outperform polished ones for trades on Instagram.</span>
+      </div>
+      <div class="tip-item">
+        <span class="tip-mark">—</span>
+        <span>If Week 1 Monday performs strongly (low CPM, high engagement), add $50–100 before Friday. A bigger retarget pool = better Week 2 results.</span>
+      </div>
+      <div class="tip-item">
+        <span class="tip-mark">—</span>
+        <span>Repurpose all posts to Stories with a link sticker. Team and candid photos get tapped through more than construction shots.</span>
+      </div>
+      <div class="tip-item">
+        <span class="tip-mark">—</span>
+        <span>Post at 7–9am or 6–8pm AEST Mon / Wed / Fri for best organic reach with Hawkesbury local audiences.</span>
+      </div>
+      <div class="tip-item">
+        <span class="tip-mark">—</span>
+        <span>Reply to every comment within the first hour — especially on team and candid posts, which attract the most questions. Early replies signal to the algorithm to keep distributing.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── FOOTER ─── -->
+  <div class="footer">
+    <span class="footer-br">Blackridge</span>
+    <span class="footer-date">Truehold Retaining · Instagram Campaign 2026</span>
+  </div>
+
+</div>
+
+<script>
+  function switchWeek(idx) {
+    ['wk0','wk1'].forEach((id, i) => document.getElementById(id).classList.toggle('on', i === idx));
+    ['wt0','wt1'].forEach((id, i) => document.getElementById(id).classList.toggle('on', i === idx));
+  }
+
+  function switchView(v) {
+    document.getElementById('vtp').classList.toggle('on', v === 'posts');
+    document.getElementById('vtb').classList.toggle('on', v === 'budget');
+    ['vw0p','vw0b','vw1p','vw1b'].forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const isPosts = id.includes('p');
+      el.classList.toggle('on', v === 'posts' ? isPosts : !isPosts);
+    });
+  }
+
+  function toggle(id) {
+    const card = document.getElementById(id);
+    const body = document.getElementById(id + 'b');
+    const chev = card.querySelector('.p-chev');
+    const open = body.classList.toggle('open');
+    chev.classList.toggle('open', open);
+    card.classList.toggle('expanded', open);
+  }
+</script>
+</body>
+</html>
