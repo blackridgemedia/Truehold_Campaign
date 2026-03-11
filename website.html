@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BLACKRIDGE</title>
+<style>
+  @font-face {
+    font-family: 'OuterSans';
+    src: url('/mnt/user-data/uploads/MADE_Outer_Sans_Black.otf') format('opentype');
+    font-weight: 900;
+  }
+  @font-face {
+    font-family: 'OuterSans';
+    src: url('/mnt/user-data/uploads/MADE_Outer_Sans_Bold.otf') format('opentype');
+    font-weight: 700;
+  }
+  @font-face {
+    font-family: 'OuterSans';
+    src: url('/mnt/user-data/uploads/MADE_Outer_Sans_Med.otf') format('opentype');
+    font-weight: 500;
+  }
+  @font-face {
+    font-family: 'OuterSans';
+    src: url('/mnt/user-data/uploads/MADE_Outer_Sans_Reg.otf') format('opentype');
+    font-weight: 400;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --charcoal: #141414;
+    --ivory: #F9F0E0;
+    --ivory-dim: rgba(249,240,224,0.6);
+    --ivory-faint: rgba(249,240,224,0.12);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--charcoal);
+    color: var(--ivory);
+    font-family: 'OuterSans', 'Helvetica Neue', sans-serif;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* CUSTOM CURSOR */
+  .cursor {
+    position: fixed;
+    width: 10px; height: 10px;
+    background: var(--ivory);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease, width 0.3s ease, height 0.3s ease, background 0.3s ease;
+    mix-blend-mode: difference;
+  }
+  .cursor-ring {
+    position: fixed;
+    width: 40px; height: 40px;
+    border: 1px solid rgba(249,240,224,0.5);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: transform 0.15s ease, width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
+  }
+  .cursor.hover { width: 6px; height: 6px; }
+  .cursor-ring.hover { width: 60px; height: 60px; opacity: 0.5; }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 28px 48px;
+    mix-blend-mode: normal;
+  }
+
+  .nav-logo img {
+    height: 22px;
+    filter: invert(1) sepia(1) saturate(0.5) brightness(1.8);
+    opacity: 0.95;
+  }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 48px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--ivory);
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+  .nav-links a:hover { opacity: 1; }
+
+  .nav-contact {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ivory);
+    text-decoration: none;
+    border: 1px solid rgba(249,240,224,0.3);
+    padding: 10px 22px;
+    transition: background 0.3s, border-color 0.3s, color 0.3s;
+  }
+  .nav-contact:hover {
+    background: var(--ivory);
+    color: var(--charcoal);
+    border-color: var(--ivory);
+  }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: flex-end;
+    padding: 0 48px 56px;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: var(--charcoal);
+    overflow: hidden;
+  }
+
+  .hero-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse 80% 60% at 60% 40%, rgba(249,240,224,0.04) 0%, transparent 70%),
+      linear-gradient(to bottom, transparent 40%, rgba(20,20,20,0.9) 100%);
+    z-index: 1;
+  }
+
+  /* Animated grid lines */
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    opacity: 0.06;
+    background-image:
+      linear-gradient(var(--ivory) 1px, transparent 1px),
+      linear-gradient(90deg, var(--ivory) 1px, transparent 1px);
+    background-size: 80px 80px;
+    animation: gridShift 30s linear infinite;
+  }
+  @keyframes gridShift {
+    0% { background-position: 0 0; }
+    100% { background-position: 80px 80px; }
+  }
+
+  .hero-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    opacity: 0.06;
+    width: 420px;
+    filter: invert(1) sepia(1) saturate(0.5) brightness(1.8);
+    animation: iconPulse 8s ease-in-out infinite;
+  }
+  @keyframes iconPulse {
+    0%, 100% { opacity: 0.04; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 0.09; transform: translate(-50%, -50%) scale(1.05); }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .hero-heading {
+    font-size: clamp(52px, 7vw, 96px);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    color: var(--ivory);
+    opacity: 0;
+    transform: translateY(40px);
+    animation: heroReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+  }
+
+  .hero-heading span {
+    display: block;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(249,240,224,0.4);
+  }
+
+  .hero-meta {
+    text-align: right;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: heroReveal 1s cubic-bezier(0.16, 1, 0.3, 1) 0.7s forwards;
+  }
+
+  .hero-meta p {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ivory-dim);
+    line-height: 2;
+    font-weight: 500;
+  }
+
+  @keyframes heroReveal {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .scroll-indicator {
+    position: absolute;
+    bottom: 56px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    animation: heroReveal 1s ease 1.4s forwards;
+  }
+  .scroll-indicator span {
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--ivory-dim);
+  }
+  .scroll-line {
+    width: 1px;
+    height: 48px;
+    background: linear-gradient(to bottom, var(--ivory-dim), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; transform: scaleY(0.8); }
+    50% { opacity: 1; transform: scaleY(1); }
+  }
+
+  /* REEL BAR */
+  .reel-bar {
+    border-top: 1px solid var(--ivory-faint);
+    border-bottom: 1px solid var(--ivory-faint);
+    overflow: hidden;
+    padding: 14px 0;
+  }
+  .reel-ticker {
+    display: flex;
+    gap: 64px;
+    white-space: nowrap;
+    animation: ticker 25s linear infinite;
+  }
+  .reel-ticker span {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--ivory-dim);
+    font-weight: 500;
+  }
+  .reel-ticker span.dot {
+    color: var(--ivory);
+    opacity: 0.3;
+  }
+  @keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* PROJECTS GRID */
+  .projects {
+    padding: 80px 48px 120px;
+  }
+
+  .projects-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 64px;
+    border-bottom: 1px solid var(--ivory-faint);
+    padding-bottom: 24px;
+  }
+
+  .projects-label {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--ivory-dim);
+    font-weight: 500;
+  }
+
+  .view-all {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ivory);
+    text-decoration: none;
+    font-weight: 500;
+    opacity: 0.5;
+    transition: opacity 0.2s;
+  }
+  .view-all:hover { opacity: 1; }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 24px;
+  }
+
+  .project-card {
+    position: relative;
+    overflow: hidden;
+    background: #1a1a1a;
+    cursor: none;
+  }
+
+  .project-card:nth-child(1) { grid-column: 1 / 8; grid-row: 1; }
+  .project-card:nth-child(2) { grid-column: 8 / 13; grid-row: 1; }
+  .project-card:nth-child(3) { grid-column: 1 / 5; grid-row: 2; }
+  .project-card:nth-child(4) { grid-column: 5 / 9; grid-row: 2; }
+  .project-card:nth-child(5) { grid-column: 9 / 13; grid-row: 2; }
+  .project-card:nth-child(6) { grid-column: 1 / 7; grid-row: 3; }
+  .project-card:nth-child(7) { grid-column: 7 / 13; grid-row: 3; }
+
+  .project-thumb {
+    width: 100%;
+    aspect-ratio: 16/10;
+    background: var(--charcoal);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .project-card:nth-child(1) .project-thumb { aspect-ratio: 16/9; }
+  .project-card:nth-child(6) .project-thumb,
+  .project-card:nth-child(7) .project-thumb { aspect-ratio: 16/8; }
+
+  /* Placeholder visuals */
+  .project-thumb .thumb-bg {
+    position: absolute;
+    inset: 0;
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .project-card:hover .thumb-bg { transform: scale(1.04); }
+
+  .thumb-1 { background: linear-gradient(135deg, #1c1c1c 0%, #2a2a2a 50%, #141414 100%); }
+  .thumb-2 { background: linear-gradient(135deg, #1a1a1a 0%, #252520 100%); }
+  .thumb-3 { background: linear-gradient(135deg, #1e1e1e 0%, #2c2c24 100%); }
+  .thumb-4 { background: linear-gradient(135deg, #141414 0%, #1e1e1e 100%); }
+  .thumb-5 { background: linear-gradient(135deg, #1a1918 0%, #252520 100%); }
+  .thumb-6 { background: linear-gradient(135deg, #1c1c1c 0%, #222222 100%); }
+  .thumb-7 { background: linear-gradient(135deg, #141414 0%, #1e1e18 100%); }
+
+  /* Geometric overlays on thumbnails */
+  .thumb-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.08;
+    transition: opacity 0.4s;
+  }
+  .project-card:hover .thumb-overlay { opacity: 0.15; }
+
+  .thumb-overlay svg { width: 80px; height: 80px; }
+
+  .play-btn {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.4s;
+    z-index: 2;
+  }
+  .project-card:hover .play-btn { opacity: 1; }
+
+  .play-circle {
+    width: 64px; height: 64px;
+    border: 1.5px solid var(--ivory);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(8px);
+    background: rgba(249,240,224,0.08);
+  }
+  .play-circle svg { width: 18px; height: 18px; margin-left: 3px; }
+
+  .project-info {
+    padding: 16px 20px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .project-name {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--ivory);
+  }
+
+  .project-cat {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ivory-dim);
+    font-weight: 500;
+    margin-top: 4px;
+    opacity: 0.6;
+  }
+
+  .project-num {
+    font-size: 10px;
+    color: var(--ivory-dim);
+    opacity: 0.35;
+    letter-spacing: 0.1em;
+    font-weight: 400;
+  }
+
+  /* Hover overlay */
+  .project-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 1px solid transparent;
+    transition: border-color 0.3s;
+    pointer-events: none;
+    z-index: 3;
+  }
+  .project-card:hover::after {
+    border-color: rgba(249,240,224,0.15);
+  }
+
+  /* ABOUT STRIP */
+  .about-strip {
+    padding: 100px 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    border-top: 1px solid var(--ivory-faint);
+  }
+
+  .about-left {}
+
+  .about-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--ivory-dim);
+    font-weight: 500;
+    margin-bottom: 32px;
+  }
+
+  .about-heading {
+    font-size: clamp(32px, 4vw, 56px);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    color: var(--ivory);
+  }
+
+  .about-heading .outline {
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(249,240,224,0.35);
+  }
+
+  .about-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 36px;
+  }
+
+  .about-body {
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--ivory-dim);
+    font-weight: 400;
+    max-width: 480px;
+  }
+
+  .stats-row {
+    display: flex;
+    gap: 48px;
+    padding-top: 36px;
+    border-top: 1px solid var(--ivory-faint);
+  }
+
+  .stat {}
+  .stat-num {
+    font-size: 36px;
+    font-weight: 900;
+    color: var(--ivory);
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--ivory-dim);
+    opacity: 0.6;
+    margin-top: 6px;
+    font-weight: 500;
+  }
+
+  /* SERVICES */
+  .services {
+    padding: 80px 48px 100px;
+    border-top: 1px solid var(--ivory-faint);
+  }
+
+  .services-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 48px;
+  }
+
+  .services-label {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--ivory-dim);
+    font-weight: 500;
+  }
+
+  .services-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--ivory-faint);
+  }
+
+  .service-item {
+    background: var(--charcoal);
+    padding: 40px 36px;
+    transition: background 0.3s;
+  }
+  .service-item:hover {
+    background: #1a1a1a;
+  }
+
+  .service-num {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: var(--ivory-dim);
+    opacity: 0.4;
+    font-weight: 500;
+    margin-bottom: 24px;
+  }
+
+  .service-name {
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--ivory);
+    margin-bottom: 16px;
+  }
+
+  .service-desc {
+    font-size: 12px;
+    line-height: 1.7;
+    color: var(--ivory-dim);
+    opacity: 0.6;
+    font-weight: 400;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 64px 48px;
+    border-top: 1px solid var(--ivory-faint);
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 48px;
+  }
+
+  .footer-logo img {
+    height: 18px;
+    filter: invert(1) sepia(1) saturate(0.5) brightness(1.8);
+    opacity: 0.6;
+  }
+
+  .footer-center {
+    text-align: center;
+  }
+  .footer-center p {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ivory-dim);
+    opacity: 0.4;
+    font-weight: 500;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 32px;
+    justify-content: flex-end;
+    list-style: none;
+  }
+  .footer-links a {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ivory);
+    text-decoration: none;
+    opacity: 0.4;
+    font-weight: 500;
+    transition: opacity 0.2s;
+  }
+  .footer-links a:hover { opacity: 0.9; }
+
+  /* CONTACT OVERLAY */
+  .contact-overlay {
+    position: fixed;
+    inset: 0;
+    background: var(--ivory);
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    padding: 48px;
+    transform: translateY(-100%);
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .contact-overlay.open {
+    transform: translateY(0);
+  }
+
+  .contact-close {
+    align-self: flex-end;
+    background: none;
+    border: none;
+    cursor: none;
+    font-family: 'OuterSans', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--charcoal);
+    font-weight: 500;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+    padding: 8px 0;
+  }
+  .contact-close:hover { opacity: 1; }
+
+  .contact-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 600px;
+  }
+
+  .contact-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--charcoal);
+    opacity: 0.5;
+    font-weight: 500;
+    margin-bottom: 24px;
+  }
+
+  .contact-heading {
+    font-size: clamp(40px, 5vw, 72px);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    color: var(--charcoal);
+    line-height: 1;
+    margin-bottom: 48px;
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid rgba(20,20,20,0.15);
+    padding: 20px 0;
+  }
+
+  .form-field label {
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--charcoal);
+    opacity: 0.4;
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+
+  .form-field input,
+  .form-field textarea {
+    background: none;
+    border: none;
+    outline: none;
+    font-family: 'OuterSans', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--charcoal);
+    resize: none;
+    cursor: none;
+  }
+
+  .form-field textarea { min-height: 80px; }
+
+  .form-submit {
+    margin-top: 36px;
+    align-self: flex-start;
+    background: var(--charcoal);
+    color: var(--ivory);
+    border: none;
+    font-family: 'OuterSans', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 16px 40px;
+    cursor: none;
+    transition: background 0.2s, color 0.2s;
+  }
+  .form-submit:hover {
+    background: #2a2a2a;
+  }
+
+  /* Reveal animations */
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 900px) {
+    nav { padding: 20px 24px; }
+    .nav-links { display: none; }
+    .hero { padding: 0 24px 48px; }
+    .projects { padding: 48px 24px 80px; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .project-card:nth-child(n) { grid-column: 1; grid-row: auto; }
+    .about-strip { grid-template-columns: 1fr; padding: 64px 24px; gap: 48px; }
+    .services { padding: 64px 24px; }
+    .services-list { grid-template-columns: 1fr 1fr; }
+    footer { grid-template-columns: 1fr; text-align: center; padding: 40px 24px; }
+    .footer-links { justify-content: center; }
+    .contact-overlay { padding: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- CONTACT OVERLAY -->
+<div class="contact-overlay" id="contactOverlay">
+  <button class="contact-close" id="contactClose">Close ×</button>
+  <div class="contact-body">
+    <p class="contact-eyebrow">Get in touch</p>
+    <h2 class="contact-heading">Let's make<br>it happen.</h2>
+    <div class="contact-form">
+      <div class="form-field">
+        <label>Your Name</label>
+        <input type="text" placeholder="Full name">
+      </div>
+      <div class="form-field">
+        <label>Email Address</label>
+        <input type="email" placeholder="hello@yourcompany.com">
+      </div>
+      <div class="form-field">
+        <label>Project Brief</label>
+        <textarea placeholder="Tell us about your project..."></textarea>
+      </div>
+      <button class="form-submit">Submit Enquiry →</button>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <img src="/mnt/user-data/uploads/HORIZONTAL_LIGHT03_-_X-LRG.png" alt="Blackridge">
+  </a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#projects">Work</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+    </ul>
+    <a href="#" class="nav-contact" id="contactBtn">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <div class="hero-grid"></div>
+    <img class="hero-icon" src="/mnt/user-data/uploads/ICON_LIGHT03_-_X-LRG.png" alt="">
+  </div>
+  <div class="hero-content">
+    <h1 class="hero-heading">
+      We craft<br>
+      <span>stories that</span>
+      move people.
+    </h1>
+    <div class="hero-meta">
+      <p>Film & Content Production</p>
+      <p>Sydney, Australia</p>
+      <p>Est. 2018</p>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- REEL BAR -->
+<div class="reel-bar">
+  <div class="reel-ticker">
+    <span>Brand Film</span><span class="dot">—</span>
+    <span>Commercial</span><span class="dot">—</span>
+    <span>Documentary</span><span class="dot">—</span>
+    <span>Editorial</span><span class="dot">—</span>
+    <span>Motion Design</span><span class="dot">—</span>
+    <span>Photography</span><span class="dot">—</span>
+    <span>Social Content</span><span class="dot">—</span>
+    <span>Brand Film</span><span class="dot">—</span>
+    <span>Commercial</span><span class="dot">—</span>
+    <span>Documentary</span><span class="dot">—</span>
+    <span>Editorial</span><span class="dot">—</span>
+    <span>Motion Design</span><span class="dot">—</span>
+    <span>Photography</span><span class="dot">—</span>
+    <span>Social Content</span><span class="dot">—</span>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<section class="projects" id="projects">
+  <div class="projects-header reveal">
+    <span class="projects-label">Selected Work — 2024</span>
+    <a href="#" class="view-all">View All →</a>
+  </div>
+  <div class="projects-grid">
+
+    <div class="project-card reveal">
+      <div class="project-thumb">
+        <div class="thumb-bg thumb-1"></div>
+        <div class="thumb-overlay">
+          <img src="/mnt/user-data/uploads/ICON_LIGHT03_-_X-LRG.png" style="width:100px;filter:invert(1) sepia(1) saturate(0.5) brightness(1.8);">
+        </div>
+        <div class="play-btn">
+          <div class="play-circle">
+            <svg viewBox="0 0 24 24" fill="none"><polygon points="6,4 20,12 6,20" fill="#F9F0E0"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="project-info">
+        <div>
+          <div class="project-name">Meridian Brand Film</div>
+          <div class="project-cat">Commercial · 2024</div>
+        </div>
+        <div class="project-num">01</div>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-thumb">
+        <div class="thumb-bg thumb-2"></div>
+        <div class="thumb-overlay">
+          <svg viewBox="0 0 80 80" fill="none"><rect x="10" y="10" width="26" height="26" stroke="#F9F0E0" stroke-width="2"/><rect x="44" y="44" width="26" height="26" stroke="#F9F0E0" stroke-width="2"/><rect x="44" y="10" width="26" height="26" stroke="#F9F0E0" stroke-width="2" opacity="0.4"/></svg>
+        </div>
+        <div class="play-btn">
+          <div class="play-circle">
+            <svg viewBox="0 0 24 24" fill="none"><polygon points="6,4 20,12 6,20" fill="#F9F0E0"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="project-info">
+        <div>
+          <div class="project-name">Apex Luxury Hotels</div>
+          <div class="project-cat">Brand Film · 2024</div>
+        </div>
+        <div class="project-num">02</div>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-thumb">
+        <div class="thumb-bg thumb-3"></div>
+        <div class="thumb-overlay">
+          <svg viewBox="0 0 80 80" fill="none"><circle cx="40" cy="40" r="28" stroke="#F9F0E0" stroke-width="2"/><circle cx="40" cy="40" r="14" stroke="#F9F0E0" stroke-width="2" opacity="0.5"/></svg>
+        </div>
+        <div class="play-btn">
+          <div class="play-circle">
+            <svg viewBox="0 0 24 24" fill="none"><polygon points="6,4 20,12 6,20" fill="#F9F0E0"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="project-info">
+        <div>
+          <div class="project-name">Volta EV Campaign</div>
+          <div class="project-cat">Commercial · 2023</div>
+        </div>
+        <div class="project-num">03</div>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-thumb">
+        <div class="thumb-bg thumb-4"></div>
+        <div class="thumb-overlay">
+          <svg viewBox="0 0 80 80" fill="none"><line x1="10" y1="40" x2="70" y2="40" stroke="#F9F0E0" stroke-width="2"/><line x1="40" y1="10" x2="40" y2="70" stroke="#F9F0E0" stroke-width="2"/><rect x="22" y="22" width="36" height="36" stroke="#F9F0E0" stroke-width="1.5" opacity="0.4"/></svg>
+        </div>
+        <div class="play-btn">
+          <div class="play-circle">
+            <svg viewBox="0 0 24 24" fill="none"><polygon points="6,4 20,12 6,20" fill="#F9F0E0"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="project-info">
+        <div>
+          <div class="project-name">Crest Architecture</div>
+          <div class="project-cat">Documentary · 2023</div>
+        </div>
+        <div class="project-num">04</div>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-thumb">
+        <div class="thumb-bg thumb-5"></div>
+        <div class="thumb-overlay">
+          <svg viewBox="0 0 80 80" fill="none"><polygon points="40,8 72,68 8,68" stroke="#F9F0E0" stroke-width="2" fill="none"/></svg>
+        </div>
+        <div class="play-btn">
+          <div class="play-circle">
+            <svg viewBox="0 0 24 24" fill="none"><polygon points="6,4 20,12 6,20" fill="#F9F0E0"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="project-info">
+        <div>
+          <div class="project-name">Halo Jewellery</div>
+          <div class="project-cat">Editorial · 2023</div>
+        </div>
+        <div class="project-num">05</div>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-thumb">
+        <div class="thumb-bg thumb-6"></div>
+        <div class="thumb-overlay">
+          <svg viewBox="0 0 80 80" fill="none"><rect x="8" y="8" width="64" height="64" rx="4" stroke="#F9F0E0" stroke-width="1.5"/><rect x="20" y="20" width="40" height="40" rx="2" stroke="#F9F0E0" stroke-width="1.5" opacity="0.5"/></svg>
+        </div>
+        <div class="play-btn">
+          <div class="play-circle">
+            <svg viewBox="0 0 24 24" fill="none"><polygon points="6,4 20,12 6,20" fill="#F9F0E0"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="project-info">
+        <div>
+          <div class="project-name">Nomad Real Estate</div>
+          <div class="project-cat">Brand Film · 2024</div>
+        </div>
+        <div class="project-num">06</div>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-thumb">
+        <div class="thumb-bg thumb-7"></div>
+        <div class="thumb-overlay">
+          <svg viewBox="0 0 80 80" fill="none"><path d="M40 10 L70 40 L40 70 L10 40 Z" stroke="#F9F0E0" stroke-width="2" fill="none"/><circle cx="40" cy="40" r="8" stroke="#F9F0E0" stroke-width="1.5" opacity="0.6"/></svg>
+        </div>
+        <div class="play-btn">
+          <div class="play-circle">
+            <svg viewBox="0 0 24 24" fill="none"><polygon points="6,4 20,12 6,20" fill="#F9F0E0"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="project-info">
+        <div>
+          <div class="project-name">Dusk Perfumery</div>
+          <div class="project-cat">Commercial · 2024</div>
+        </div>
+        <div class="project-num">07</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-strip" id="about">
+  <div class="about-left reveal">
+    <p class="about-eyebrow">About Blackridge</p>
+    <h2 class="about-heading">
+      Craft.<br>
+      Vision.<br>
+      <span class="outline">Impact.</span>
+    </h2>
+  </div>
+  <div class="about-right reveal">
+    <p class="about-body">
+      Blackridge is a premium film and content production studio. We partner with brands, agencies and visionaries to create cinematic stories that leave a lasting impression — from concept to screen.
+    </p>
+    <div class="stats-row">
+      <div class="stat">
+        <div class="stat-num">120+</div>
+        <div class="stat-label">Projects</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">6</div>
+        <div class="stat-label">Years Active</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">40+</div>
+        <div class="stat-label">Clients</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-header reveal">
+    <span class="services-label">What We Do</span>
+  </div>
+  <div class="services-list">
+    <div class="service-item reveal">
+      <div class="service-num">01</div>
+      <div class="service-name">Brand Film</div>
+      <div class="service-desc">Cinematic brand stories that connect emotionally and drive action across every platform.</div>
+    </div>
+    <div class="service-item reveal">
+      <div class="service-num">02</div>
+      <div class="service-name">Commercial</div>
+      <div class="service-desc">High-impact commercial production — from TVC to digital-first campaign content.</div>
+    </div>
+    <div class="service-item reveal">
+      <div class="service-num">03</div>
+      <div class="service-name">Documentary</div>
+      <div class="service-desc">Long-form storytelling with depth, authenticity and a cinematic point of view.</div>
+    </div>
+    <div class="service-item reveal">
+      <div class="service-num">04</div>
+      <div class="service-name">Motion Design</div>
+      <div class="service-desc">Animated identities, title sequences and motion graphics that elevate every frame.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <img src="/mnt/user-data/uploads/HORIZONTAL_LIGHT03_-_X-LRG.png" alt="Blackridge">
+  </div>
+  <div class="footer-center">
+    <p>© 2024 Blackridge. All rights reserved.</p>
+  </div>
+  <ul class="footer-links">
+    <li><a href="#">Instagram</a></li>
+    <li><a href="#">Vimeo</a></li>
+    <li><a href="#">LinkedIn</a></li>
+  </ul>
+</footer>
+
+<script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx + 'px';
+    cursor.style.top = my + 'px';
+  });
+
+  function lerp(a, b, t) { return a + (b - a) * t; }
+  function animateCursor() {
+    rx = lerp(rx, mx, 0.12);
+    ry = lerp(ry, my, 0.12);
+    ring.style.left = rx + 'px';
+    ring.style.top = ry + 'px';
+    requestAnimationFrame(animateCursor);
+  }
+  animateCursor();
+
+  document.querySelectorAll('a, button, .project-card').forEach(el => {
+    el.addEventListener('mouseenter', () => { cursor.classList.add('hover'); ring.classList.add('hover'); });
+    el.addEventListener('mouseleave', () => { cursor.classList.remove('hover'); ring.classList.remove('hover'); });
+  });
+
+  // Contact overlay
+  const overlay = document.getElementById('contactOverlay');
+  document.getElementById('contactBtn').addEventListener('click', e => {
+    e.preventDefault();
+    overlay.classList.add('open');
+  });
+  document.getElementById('contactClose').addEventListener('click', () => {
+    overlay.classList.remove('open');
+  });
+
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
